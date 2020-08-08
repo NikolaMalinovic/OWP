@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/Registracija.js"></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<title>Register page</title>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+html { 
+  background: url(slike/bioskopHD.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+#loginWindow {
+	width: 400px;
+	height: 250px;
+	margin: 10% auto 0;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+}
+
+#windowHeader {
+	width: 100%;
+	height: 12%;
+	background-color: #0082e6;
+	color: white;
+    background: -moz-linear-gradient(center top , #e8e8e8, #bcbbbc);
+    border-bottom: 1px solid #6a6a6a;
+	padding-left: 20px;
+	padding-top: 3px;	
+    
+}
+
+#windowBody {
+	background-color: rgba(0, 0, 0, 0.9);
+    color: #f0f0f0;
+	width: 105%;
+	height: 80%;
+	padding: 40px 15px;	
+}
+
+#loginTable {
+	width: 75%;
+	margin:0 auto;	
+}
+
+button {
+	width: 40%;
+	float: right;
+	background: #0082e6;
+	color: #f0f0f0;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+p {
+	padding-top: 9px;
+
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+html { 
+  background: url(slike/bioskopHD.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 200%;
+}
+
+nav{
+  background: #0082e6;
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: #f2f2f2;
+  font-size: 33px;
+  line-height: 80px;
+  padding: 0 140px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+nav ul{
+  float: right;
+  margin-right: 60px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 2px;
+}
+nav ul li a{
+  color: #f2f2f2;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  /* text-transform: uppercase; */
+  font-family: 'Poppins', sans-serif;
+}
+a.active,a:hover{
+  background: #1b9bff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 27px;
+    padding-left: 25px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+    margin-right: 40px;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+section{
+  
+  background-size: cover;
+  height: calc(100vh - 80px);
+}
+
+
+input {
+	float: right;
+}
+</style>
+
+<body>
+ <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">MalinaCineplex</label>
+      <ul>
+<li><a href="Index.html">Home</a></li>
+<li><a href="#">Filmovi</a></li>
+<li><a href="#">Projekcije</a></li>
+<li><a href="Login.html">Prijava</a></li>
+<li><a class="active">Registracija</a></li>
+
+</ul>
+</nav>
+    <section>
+    <div id="loginWindow">
+    	<div id="windowHeader">Register</div>
+        <div id="windowBody">
+        	<form>
+                <table id="loginTable">
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" name="username" autocomplete="off" id="usernameInput"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" name="password" autocomplete="off" id="passwordInput"></td>
+                    </tr>
+                    <tr>
+                    	<td>Repeat password:</td>
+                    	<td><input type="password" name="password" id="passwordInput2"/></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><button type="submit" value= "Register" id="registerSubmit">Register</button></td>
+                    </tr>
+                </table>
+            </form>
+           
+        </div>
+    </div></section>
+	
+</body>
+</html>
