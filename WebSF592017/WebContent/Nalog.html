@@ -105,10 +105,12 @@ a.active,a:hover{
   }
 }
 section{
-  background: url(bg1.jpg) no-repeat;
-  background-size: cover;
-  height: calc(100vh - 80px);
+ 	font-size: 30px;
+  text-align: center; color:#0082e6;
+  padding-top: 140px;
+   font-family: 'Poppins', sans-serif;
 }
+div {display: block; text-align: center;}
   </style>
   <body>
     <nav>
@@ -118,13 +120,37 @@ section{
       </label>
       <label class="logo">MalinaCineplex</label>
       <ul>
-<li><a class="active" href="#">Home</a></li>
-<li><a href="Filmovi.html">Filmovi</a></li>
-<li><a href="KorisnikProjekcije.html">Projekcije</a></li>
-<li><a href="Login.html">Prijava</a></li>
-<li><a href="Registracija.html">Registracija</a></li>
+<li><a href="#" id="odjavaLink">Odjava</a></li>
+<li><a href="#" id="pocetna">Pocetna</a></li>
+
 </ul>
 </nav>
-    <section></section>
+    <section>
+    <h2 id="imeNaloga"></h2>
+    <div id="korisnikPrikaz">
+    </div>
+    </section>
+    <div id="adminPrikaz">
+
+</div>
+
+<div id="korisnikIzmena">
+
+</div>
+
+<div id="adminIzmena">
+
+</div>
+<div id=divTabelaKarte>
+		<p>Karte korisnika</p>
+		<table border="1" id="karteTabela" style="background-color : dodgerblue; text-align: center; display: inline-block;">
+			<tr>
+				<th>Film</th>
+				<th>Datum prodaje</th>
+			</tr>
+			</table>
+</div>
+<p id="adminInterfejs" style="text-align: center;"></p>
+
   </body>
 </html>

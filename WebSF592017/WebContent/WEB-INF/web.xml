@@ -79,4 +79,34 @@
     <servlet-name>UnauthorizedServlet</servlet-name>
     <url-pattern>/UnauthorizedServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FilmoviServlet</display-name>
+    <servlet-name>FilmoviServlet</servlet-name>
+    <servlet-class>aplikacija.FilmoviServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilmoviServlet</servlet-name>
+    <url-pattern>/FilmoviServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FilmoviKorisnikServlet</display-name>
+    <servlet-name>FilmoviKorisnikServlet</servlet-name>
+    <servlet-class>aplikacija.FilmoviKorisnikServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilmoviKorisnikServlet</servlet-name>
+    <url-pattern>/FilmoviKorisnikServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KorisnikFilmoviServlet</display-name>
+    <servlet-name>KorisnikFilmoviServlet</servlet-name>
+    <servlet-class>aplikacija.KorisnikFilmoviServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KorisnikFilmoviServlet</servlet-name>
+    <url-pattern>/KorisnikFilmoviServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

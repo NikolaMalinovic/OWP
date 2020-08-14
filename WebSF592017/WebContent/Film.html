@@ -3,9 +3,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Responsive Navbar</title>
+    <title>Film</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="js/jquery-3.3.1.js"></script>
+	<script src="js/Film.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <style>
@@ -105,9 +107,7 @@ a.active,a:hover{
   }
 }
 section{
-  background: url(bg1.jpg) no-repeat;
-  background-size: cover;
-  height: calc(100vh - 80px);
+
 }
   </style>
   <body>
@@ -118,13 +118,22 @@ section{
       </label>
       <label class="logo">MalinaCineplex</label>
       <ul>
-<li><a class="active" href="#">Home</a></li>
-<li><a href="Filmovi.html">Filmovi</a></li>
-<li><a href="KorisnikProjekcije.html">Projekcije</a></li>
-<li><a href="Login.html">Prijava</a></li>
-<li><a href="Registracija.html">Registracija</a></li>
+<li><a  href="Index.html">Home</a></li>
+<li><a href="Filmovi.html">Profil</a></li>
+<li><a id="odjava" href="#">Odjava</a></li>
+
 </ul>
 </nav>
-    <section></section>
+    <section>
+    <h1 id="imeFilma"></h1>
+    <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;">
+     <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"></p>
+    </section>
+    <div id="korisnikPrikaz">
+
+	</div>
+	<div id="adminPrikaz">
+
+	</div>
   </body>
 </html>

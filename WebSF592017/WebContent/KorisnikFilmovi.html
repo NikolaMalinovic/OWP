@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Filmovi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/KorisnikFilmovi.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+nav{
+  background: #0082e6;
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: #f2f2f2;
+  font-size: 33px;
+  line-height: 80px;
+  padding: 0 140px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+nav ul{
+  float: right;
+  margin-right: 60px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 2px;
+}
+nav ul li a{
+  color: #f2f2f2;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  /* text-transform: uppercase; */
+  font-family: 'Poppins', sans-serif;
+}
+a.active,a:hover{
+  background: #1b9bff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 27px;
+    padding-left: 25px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+    margin-right: 40px;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+section{
+  font-size: 30px;
+  text-align: center; color:#0082e6;
+  padding-top: 140px;
+   font-family: 'Poppins', sans-serif;
+ 
+}
+
+table {
+	text-align: center;
+	display: inline-block;
+}
+
+th {cursor: pointer; border-style: solid;}
+th:hover {color: silver;}
+  </style>
+  <body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">MalinaCineplex</label>
+      <ul>
+<li><a href="Index.html">Home</a></li>
+<li><a class="active" href="#">Filmovi</a></li>
+<li><a href="KorisnikProjekcije.html">Projekcije</a></li>
+<li><a href="#" id="profilLink">Profil</a></li>
+<li><a href="#" id="odjavaLink">Odjava</a></li>
+</ul>
+</nav>
+    <section>
+    <h1>Izaberi nacin pretrage</h1>
+    <select id="nacinPretrage" name="comboBoxPretraga">
+			<option value="7" selected="selected">Nacin pretrage</option>
+			<option value="1">Naziv</option>
+			<option value="2">Zanr</option>
+			<option value="3">Opseg trajanja</option>
+			<option value="4">Distributer</option>
+			<option value="5">Zemlja porekla</option>
+			<option value="6">Opseg godine proizvodnje</option>		
+			
+		</select>
+		<br/>
+		<br/>
+		
+		<input name="nazivPretraga" type="text" id="nazivPretragaInput" placeholder="Uneti naziv filma"/>
+		<input name="zanrPretraga" type="text" id="zanrPretragaInput" placeholder="Uneti zanrove"/>
+		<input placeholder="Trajanje od" type="text" id="trajanjeOdInput"/> <input placeholder="Trajanje do" type="text" id="trajanjeDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaTrajanje"/>
+		<input name="distributerPretraga" type="text" id="distributerPretragaInput" placeholder="Uneti distributera"/>
+		<input name="zemljaPoreklaPretraga" type="text" id="zemljaPoreklaPretragaInput" placeholder="Uneti zemlju porekla"/>
+		<input placeholder="Godina od" type="text" id="godinaOdInput"/>   <input placeholder="Godina do" type="text" id="godinaDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaGodina"/>
+		
+		<br/>
+		<br/>
+		
+		<table border="1" id="filmoviTabela">
+			<tr>
+				<th onclick="sortTable(0)">Naziv</th>
+				<th onclick="sortTable(1)">Zanrovi</th>
+				<th onclick="sortTable(2)">Trajanje</th>
+				<th onclick="sortTable(3)">Distributer</th>
+				<th onclick="sortTable(4)">Zemlja porekla</th>
+				<th onclick="sortTable(5)">Godina proizvodnje</th>
+			</tr>
+			</table>
+			<p id="adminInterfejs"></p>
+    </section>
+    
+
+
+<script>
+function sortTable(n) {
+	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	  table = document.getElementById("filmoviTabela");
+	  switching = true;
+	  //Set the sorting direction to ascending:
+	  dir = "asc"; 
+	  /*Make a loop that will continue until
+	  no switching has been done:*/
+	  while (switching) {
+	    //start by saying: no switching is done:
+	    switching = false;
+	    rows = table.rows;
+	    /*Loop through all table rows (except the
+	    first, which contains table headers):*/
+	    for (i = 1; i < (rows.length - 1); i++) {
+	      //start by saying there should be no switching:
+	      shouldSwitch = false;
+	      /*Get the two elements you want to compare,
+	      one from current row and one from the next:*/
+	      x = rows[i].getElementsByTagName("TD")[n];
+	      y = rows[i + 1].getElementsByTagName("TD")[n];
+	      broj1 = parseInt(x.innerHTML);
+	      broj2 = parseInt(y.innerHTML);
+	      /*check if the two rows should switch place,
+	      based on the direction, asc or desc:*/
+	      if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
+	          if (broj1 > broj2) {
+	              //if so, mark as a switch and break the loop:
+	              shouldSwitch= true;
+	              break;
+	            }
+		}else if (dir == "desc" && !isNaN(broj1) && !isNaN(broj2)) {
+	        if (broj1 < broj2) {
+	            //if so, mark as a switch and break the loop:
+	            shouldSwitch= true;
+	            break;
+	          }
+		} else if (dir == "asc") {
+	        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+	          //if so, mark as a switch and break the loop:
+	          shouldSwitch= true;
+	          break;
+	        }
+	      } else if (dir == "desc") {
+	        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+	          //if so, mark as a switch and break the loop:
+	          shouldSwitch = true;
+	          break;
+	        }
+	      } 
+	    }
+	    if (shouldSwitch) {
+	      /*If a switch has been marked, make the switch
+	      and mark that a switch has been done:*/
+	      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+	      switching = true;
+	      //Each time a switch is done, increase this count by 1:
+	      switchcount ++;      
+	    } else {
+	      /*If no switching has been done AND the direction is "asc",
+	      set the direction to "desc" and run the while loop again.*/
+	      if (switchcount == 0 && dir == "asc") {
+	        dir = "desc";
+	        switching = true;
+	      }
+	    }
+	  }
+	}
+</script>
+</body>
+</html>

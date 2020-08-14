@@ -26,7 +26,7 @@ $(document).ready(function() {
 				return;
 			}
 			if (data.status == 'success') {
-				window.location.replace('KorisnikProjekcije.html');
+				window.location.replace('KorisnikFilmovi.html');
 			}
 		});
 		
