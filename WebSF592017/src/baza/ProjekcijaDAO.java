@@ -1,0 +1,527 @@
+package baza;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Projekcija;
+
+public class ProjekcijaDAO {
+
+	public static List<Projekcija> getAll() {
+		List<Projekcija> projekcije = new ArrayList<>();
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
+					+ "FROM projekcije WHERE aktivan = 1 AND (strftime('%d',datumVreme) - strftime('%d','now'))=0 ORDER BY film, datumVreme";
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				int index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				rset.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+		}
+
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getSveAktivne() {
+		List<Projekcija> projekcije = new ArrayList<>();
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
+					+ "FROM projekcije WHERE aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				int index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				rset.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+		}
+
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getSve() {
+		List<Projekcija> projekcije = new ArrayList<>();
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
+					+ "FROM projekcije";
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				int index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				rset.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+		}
+
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getNazivFilma(String nazivFilmaPretraga) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
+					+ "projekcije p, filmovi f WHERE p.film = f.id AND f.naziv LIKE ? AND (strftime('%d',datumVreme) - strftime('%d','now'))=0";	 
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + nazivFilmaPretraga + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getTipProjekcije(String tipProjekcijePretraga) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
+					+ "projekcije p, tipovipr t WHERE p.tip = t.id AND t.naziv LIKE ? AND (strftime('%d',p.datumVreme) - strftime('%d','now'))=0";	 
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + tipProjekcijePretraga + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getSala(String salaPretraga) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
+					+ "projekcije p, sale s WHERE p.sala = s.id AND s.naziv LIKE ? AND (strftime('%d',p.datumVreme) - strftime('%d','now'))=0";	 
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + salaPretraga + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getOpsegCena(String cena1, String cena2) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM "
+					+ "projekcije WHERE CAST(cenaKarte AS int) >= ? and CAST(cenaKarte AS int) <= ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++,cena1);
+			pstmt.setString(index++,cena2);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getOpsegDatuma(String datum1, String datum2) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM "
+					+ "projekcije WHERE datumVreme >= ? AND datumVreme <= ? AND aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++,datum1);
+			pstmt.setString(index++,datum2);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
+	public static boolean add(Projekcija projekcija) {
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+
+			pstmt.setInt(index++, projekcija.getFilm());
+			pstmt.setInt(index++, projekcija.getTip());
+			pstmt.setInt(index++, projekcija.getSala());
+			pstmt.setString(index++, projekcija.getDatumVreme());
+			pstmt.setInt(index++, projekcija.getCenaKarte());
+			pstmt.setString(index++, projekcija.getAdministrator());
+			pstmt.setBoolean(index++, projekcija.isAktivan());
+			
+
+			return pstmt.executeUpdate() == 1;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static Projekcija get(String idProjekcije) {
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM projekcije WHERE id = ?";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, idProjekcije);
+
+			rset = pstmt.executeQuery();
+			
+			int id = Integer.parseInt(idProjekcije);
+
+			if (rset.next()) {
+				index = 2;
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				return new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return null;
+	}
+	
+	public static boolean brisanjeProjekcije(String idProjekcije) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "DELETE FROM projekcije WHERE id = ?";
+
+			int index = 1;
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(index++, idProjekcije);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static boolean logickoBrisanjeProjekcije(String idProjekcije) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "UPDATE projekcije SET aktivan = 0 WHERE id = ? AND id IN (SELECT projekcija FROM karte)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, idProjekcije);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+}

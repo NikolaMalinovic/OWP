@@ -109,4 +109,24 @@
     <servlet-name>KorisnikFilmoviServlet</servlet-name>
     <url-pattern>/KorisnikFilmoviServlet</url-pattern>
   </servlet-mapping>
-</web-app>
+  <servlet>
+    <description></description>
+    <display-name>FilmServlet</display-name>
+    <servlet-name>FilmServlet</servlet-name>
+    <servlet-class>aplikacija.FilmServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilmServlet</servlet-name>
+    <url-pattern>/FilmServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProjekcijaServlet</display-name>
+    <servlet-name>ProjekcijaServlet</servlet-name>
+    <servlet-class>aplikacija.ProjekcijaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjekcijaServlet</servlet-name>
+    <url-pattern>/ProjekcijaServlet</url-pattern>
+  </servlet-mapping>
+  </web-app>

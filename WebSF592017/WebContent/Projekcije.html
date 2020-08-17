@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Filmovi</title>
+    <title>Projekcije</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/Filmovi.js"></script>
+    <script src="js/Projekcije.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <style>
@@ -130,47 +130,54 @@ th:hover {color: silver;}
       <label class="logo">MalinaCineplex</label>
       <ul>
 <li><a href="Index.html">Home</a></li>
-<li><a class="active" href="#">Filmovi</a></li>
-<li><a href="Projekcije.html">Projekcije</a></li>
+<li><a href="Filmovi.html">Filmovi</a></li>
+<li><a class="active" href="#">Projekcije</a></li>
 <li><a href="Login.html">Prijava</a></li>
 <li><a href="Registracija.html">Registracija</a></li>
 </ul>
 </nav>
     <section>
     <h1>Izaberi nacin pretrage</h1>
-    <select id="nacinPretrage" name="comboBoxPretraga">
-			<option value="7" selected="selected">Nacin pretrage</option>
-			<option value="1">Naziv</option>
-			<option value="2">Zanr</option>
-			<option value="3">Opseg trajanja</option>
-			<option value="4">Distributer</option>
-			<option value="5">Zemlja porekla</option>
-			<option value="6">Opseg godine proizvodnje</option>		
+    <select id="nacinPretragePr" name="comboBoxPretragaPr">
+			<option value="6" selected="selected">Nacin pretrage</option>
+			<option value="1">Naziv filma</option>
+			<option value="2">Opseg vremena prikazivanja</option>
+			<option value="3">Tip projekcije</option>
+			<option value="4">Sala</option>
+			<option value="5">Opseg cene</option>	
 			
 		</select>
 		<br/>
 		<br/>
 		
-		<input name="nazivPretraga" type="text" id="nazivPretragaInput" placeholder="Uneti naziv filma"/>
-		<input name="zanrPretraga" type="text" id="zanrPretragaInput" placeholder="Uneti zanrove"/>
-		<input placeholder="Trajanje od" type="text" id="trajanjeOdInput"/> <input placeholder="Trajanje do" type="text" id="trajanjeDoInput"/>
-		<input type="submit" value="Pretrazi" id="pretragaTrajanje"/>
-		<input name="distributerPretraga" type="text" id="distributerPretragaInput" placeholder="Uneti distributera"/>
-		<input name="zemljaPoreklaPretraga" type="text" id="zemljaPoreklaPretragaInput" placeholder="Uneti zemlju porekla"/>
-		<input placeholder="Godina od" type="text" id="godinaOdInput"/>   <input placeholder="Godina do" type="text" id="godinaDoInput"/>
-		<input type="submit" value="Pretrazi" id="pretragaGodina"/>
-		
+		<input name="nazivFilmaPretraga" type="text" id="nazivFilmaPretragaInput" placeholder="Uneti naziv filma"/>
+		<input type="date" id="datumOdInput"/> <input type="time" id="vremeOdInput"/> <input type="date" id="datumDoInput"/> <input type="time" id="vremeDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaVremePrikazivanja"/>
+		<select id="tipProjekcijePretragaInput" name="tipProjekcijePretraga">
+			<option value="4" selected="selected">Izaberi tip projekcije</option>
+			<option value="1">2D</option>
+			<option value="2">3D</option>
+			<option value="3">4D</option>
+		</select>
+			<select id="salaPretragaInput" name="salaPretraga">
+			<option value="4" selected="selected">Izaberi salu</option>
+			<option value="1">Velika sala</option>
+			<option value="2">Srednja sala</option>
+			<option value="3">Mala sala</option>
+		</select>
+		<input placeholder="Cena od" type="text" id="cenaOdInput"/>   <input placeholder="Cena do" type="text" id="cenaDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaCena"/>
 		<br/>
 		<br/>
 		
-		<table border="1" id="filmoviTabela">
+		<table border="1" id="projekcijeTabela">
 			<tr>
-				<th onclick="sortTable(0)">Naziv</th>
-				<th onclick="sortTable(1)">Zanrovi</th>
-				<th onclick="sortTable(2)">Trajanje</th>
-				<th onclick="sortTable(3)">Distributer</th>
-				<th onclick="sortTable(4)">Zemlja porekla</th>
-				<th onclick="sortTable(5)">Godina proizvodnje</th>
+				<th onclick="sortTable(0)">Film</th>
+				<th onclick="sortTable(1)">Vreme prikazivanja</th>
+				<th onclick="sortTable(2)">Tip projekcije</th>
+				<th onclick="sortTable(3)">Sala</th>
+				<th onclick="sortTable(4)">Cena</th>
+			
 			</tr>
 			</table>
     </section>
