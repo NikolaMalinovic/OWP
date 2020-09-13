@@ -1,6 +1,6 @@
  $(document).ready(function() {
 		
-		function ispisProfil(){
+function ispisProfil(){
 			$.get('KorisnikFilmoviServlet', function(data){
 				
 				if (data.status == 'unauthenticated') {
@@ -10,7 +10,7 @@
 
 				if (data.status == 'success') {
 					var username = data.prijavljenKorisnikKorime;
-					$('#profilLink').append('<a style="text-decoration: none; font-weight: bold; color: dodgerblue;" href="Nalog.html?username='+ username +'">Profil</a>');
+					$('#profilLink').append('<a style="text-decoration: none; font-weight: bold; color: white;" href="Nalog.html?username='+ username +'">Profil</a>');
 				}
 				
 			});
@@ -30,7 +30,6 @@
 		return false;
 	});
 	
-
 	
 	
 	var adminInterfejs = $('#adminInterfejs');

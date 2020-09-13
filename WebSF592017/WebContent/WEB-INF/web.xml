@@ -2,12 +2,9 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>WebSF592017</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>Filmovi.html</welcome-file>
+    
+    
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -121,6 +118,36 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ProjekcijeServlet</display-name>
+    <servlet-name>ProjekcijeServlet</servlet-name>
+    <servlet-class>aplikacija.ProjekcijaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjekcijeServlet</servlet-name>
+    <url-pattern>/ProjekcijeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NalogServlet</display-name>
+    <servlet-name>NalogServlet</servlet-name>
+    <servlet-class>aplikacija.NalogServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NalogServlet</servlet-name>
+    <url-pattern>/NalogServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KorisnikProjekcijeServlet</display-name>
+    <servlet-name>KorisnikProjekcijeServlet</servlet-name>
+    <servlet-class>aplikacija.KorisnikProjekcijeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KorisnikProjekcijeServlet</servlet-name>
+    <url-pattern>/KorisnikProjekcijeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ProjekcijaServlet</display-name>
     <servlet-name>ProjekcijaServlet</servlet-name>
     <servlet-class>aplikacija.ProjekcijaServlet</servlet-class>
@@ -129,4 +156,54 @@
     <servlet-name>ProjekcijaServlet</servlet-name>
     <url-pattern>/ProjekcijaServlet</url-pattern>
   </servlet-mapping>
-  </web-app>
+  <servlet>
+    <description></description>
+    <display-name>UpravljanjeKorisnicimaServlet</display-name>
+    <servlet-name>UpravljanjeKorisnicimaServlet</servlet-name>
+    <servlet-class>aplikacija.UpravljanjeKorisnicimaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpravljanjeKorisnicimaServlet</servlet-name>
+    <url-pattern>/UpravljanjeKorisnicimaServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DodavanjeFilmaServlet</display-name>
+    <servlet-name>DodavanjeFilmaServlet</servlet-name>
+    <servlet-class>aplikacija.DodavanjeFilmaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DodavanjeFilmaServlet</servlet-name>
+    <url-pattern>/DodavanjeFilmaServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DodavanjeProjekcijeServlet</display-name>
+    <servlet-name>DodavanjeProjekcijeServlet</servlet-name>
+    <servlet-class>aplikacija.DodavanjeProjekcijeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DodavanjeProjekcijeServlet</servlet-name>
+    <url-pattern>/DodavanjeProjekcijeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IzvestavanjeServlet</display-name>
+    <servlet-name>IzvestavanjeServlet</servlet-name>
+    <servlet-class>aplikacija.IzvestavanjeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IzvestavanjeServlet</servlet-name>
+    <url-pattern>/IzvestavanjeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KartaServlet</display-name>
+    <servlet-name>KartaServlet</servlet-name>
+    <servlet-class>aplikacija.KartaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KartaServlet</servlet-name>
+    <url-pattern>/KartaServlet</url-pattern>
+  </servlet-mapping>
+ </web-app>

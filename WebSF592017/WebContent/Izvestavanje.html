@@ -1,15 +1,12 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Projekcije</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/KorisnikProjekcije.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  </head>
-  <style>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/Izvestavanje.js"></script>
+<title>Izvestavanje</title>
+</head>
+ <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
   margin: 0;
@@ -121,7 +118,7 @@ table {
 th {cursor: pointer; border-style: solid;}
 th:hover {color: silver;}
   </style>
-  <body>
+<body>
     <nav>
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
@@ -130,57 +127,32 @@ th:hover {color: silver;}
       <label class="logo">MalinaCineplex</label>
       <ul>
 
-<li><a href="KorisnikFilmovi.html">Filmovi</a></li>
-<li><a class="active" href="#">Projekcije</a></li>
-<li><a href="#" id="profilLink"></a></li>
-<li><a href="#" id="odjavaLink">Odjava</a></li>
+
+<li><a href="#" id="odjavaLink">Profil</a></li>
+<li><a href="#" id="profilLink">Odjava</a></li>
 </ul>
 </nav>
     <section>
     <h1>Izaberi nacin pretrage</h1>
-    <select id="nacinPretrage" name="comboBoxPretragaPr">
-			<option value="6" selected="selected">Nacin pretrage</option>
-			<option value="1">Naziv</option>
-			<option value="2">Opseg vremena prikazivanja</option>
-			<option value="3">Tip projekcije</option>
-			<option value="4">Sala</option>
-			<option value="5">Opseg cene</option>		
-			
-		</select>
-		<br/>
-		<br/>
-		
-		<input name="nazivFilmaPretraga" type="text" id="nazivFilmaPretragaInput" placeholder="Uneti naziv filma"/>
+    <div>
+
 		<input type="date" id="datumOdInput"/> <input type="time" id="vremeOdInput"/> <input type="date" id="datumDoInput"/> <input type="time" id="vremeDoInput"/>
-		<input type="submit" value="Pretrazi" id="pretragaVremePrikazivanja"/>
-		<select id="tipProjekcijePretragaInput" name="tipProjekcijePretraga">
-			<option value="4" selected="selected">Izaberi tip projekcije</option>
-			<option value="1">2D</option>
-			<option value="2">3D</option>
-			<option value="3">4D</option>
-		</select>
-			<select id="salaPretragaInput" name="salaPretraga">
-			<option value="4" selected="selected">Izaberi salu</option>
-			<option value="1">Velika sala</option>
-			<option value="2">Srednja sala</option>
-			<option value="3">Mala sala</option>
-		</select>
-		<input placeholder="Cena od" type="text" id="cenaOdInput"/>   <input placeholder="Cena do" type="text" id="cenaDoInput"/>
-		<input type="submit" value="Pretrazi" id="pretragaCena"/>
+		<input type="submit" value="Pretrazi" id="pretragaOpsegVremena"/>
+	
 		<br/>
 		<br/>
 		
-		<table border="1" id="projekcijeTabela">
+		<table border="1" id="izvestavanjeTabela">
 			<tr>
-				<th onclick="sortTable(0)">Film</th>
-				<th onclick="sortTable(1)">Vreme prikazivanja</th>
-				<th onclick="sortTable(2)">Tip projekcije</th>
-				<th onclick="sortTable(3)">Sala</th>
-				<th onclick="sortTable(4)">Cena</th>
-			
+				<th>Naziv filma</th>
+				<th onclick="sortTable(1)">Broj projekcija</th>
+				<th onclick="sortTable(2)">Broj prodatih karata</th>
+				<th onclick="sortTable(3)">Ukupna cena</th>
+				
 			</tr>
 			</table>
-			<p id="adminInterfejs"></p>
+			<p><a href="UpravljanjeKorisnicima.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Upravljanje korisnicima</a></p>
+</div>
     </section>
     
 
@@ -188,7 +160,7 @@ th:hover {color: silver;}
 <script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("projekcijeTabela");
+  table = document.getElementById("izvestavanjeTabela");
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc"; 
@@ -200,37 +172,19 @@ function sortTable(n) {
     rows = table.rows;
     /*Loop through all table rows (except the
     first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 1; i < (rows.length - 2); i++) {
       //start by saying there should be no switching:
       shouldSwitch = false;
       /*Get the two elements you want to compare,
       one from current row and one from the next:*/
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      nazivlink1 = rows[i].querySelectorAll("td,a")[n + 1];
-      nazivlink2 = rows[i + 1].querySelectorAll("td,a")[n + 1];
-      datumlink1 = rows[i].querySelectorAll("td,a")[n + 2];
-      datumlink2 = rows[i + 1].querySelectorAll("td,a")[n + 2];
       broj1 = parseInt(x.innerHTML);
       broj2 = parseInt(y.innerHTML);
-      datum1 = Date.parse(datumlink1.innerHTML);
-      datum2 = Date.parse(datumlink2.innerHTML);
       //console.log(datumlink1.innerHTML);
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
-      if (dir == "asc" && !isNaN(datum1) && !isNaN(datum2)) {
-          if (datum1 > datum2) {
-              //if so, mark as a switch and break the loop:
-              shouldSwitch= true;
-              break;
-            }
-	}else if (dir == "desc" && !isNaN(datum1) && !isNaN(datum2)) {
-        if (datum1 < datum2) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch= true;
-            break;
-          }
-	}else if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
+      if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
           if (broj1 > broj2) {
               //if so, mark as a switch and break the loop:
               shouldSwitch= true;
@@ -242,31 +196,19 @@ function sortTable(n) {
             shouldSwitch= true;
             break;
           }
-	} else if (dir == "asc" && x.innerHTML.includes('sala') && y.innerHTML.includes('sala')) {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch= true;
-            break;
-        }
-	}else if (dir == "desc" && x.innerHTML.includes('sala') && y.innerHTML.includes('sala')) {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch= true;
-            break;
-        }
-	}else if (dir == "asc") {
-        if (nazivlink1.innerHTML.toLowerCase() > nazivlink2.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
+	} else if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
       } else if (dir == "desc") {
-        if (nazivlink1.innerHTML.toLowerCase() < nazivlink2.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      } 
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+               //if so, mark as a switch and break the loop:
+               shouldSwitch = true;
+               break;
+             }
+           } 
       
     }
     if (shouldSwitch) {
@@ -288,5 +230,6 @@ function sortTable(n) {
 }
 
 </script>
+
 </body>
 </html>

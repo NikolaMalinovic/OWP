@@ -44,7 +44,7 @@ public class ProjekcijeServlet extends HttpServlet {
 		List<Projekcija> opsegDatumaPretraga = ProjekcijaDAO.getOpsegDatuma(datum1, datum2);
 		
 		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("tipovi", tipoviProjekcije);
+		data.put("tipoviProjekcije", tipoviProjekcije);
 		data.put("sale", sale);
 		data.put("filmovi", filmovi);
 		data.put("projekcije", projekcije);

@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>Nalog</title>
+    <meta charset="UTF-8">
+    <title>Filmovi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/Nalog.js"></script>
+    <script src="js/Karta.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <style>
@@ -106,12 +106,20 @@ a.active,a:hover{
   }
 }
 section{
- 	font-size: 30px;
+  font-size: 30px;
   text-align: center; color:#0082e6;
   padding-top: 140px;
    font-family: 'Poppins', sans-serif;
+ 
 }
-div {display: block; text-align: center;}
+
+table {
+	text-align: center;
+	display: inline-block;
+}
+
+th {cursor: pointer; border-style: solid;}
+th:hover {color: silver;}
   </style>
   <body>
     <nav>
@@ -121,39 +129,19 @@ div {display: block; text-align: center;}
       </label>
       <label class="logo">MalinaCineplex</label>
       <ul>
-<li><a href="#" id="odjavaLink">Odjava</a></li>
-<li><a href="KorisnikFilmovi.html">Filmovi</a></li>
 
+<li><a href="#" id="pocetnaLink"></a></li>
+<li><a href="#" id="profilLink"></a></li>
+<li><a href="#" id="odjavaLink">Odjava</a></li>
 </ul>
 </nav>
     <section>
-    <h2 id="imeNaloga"></h2>
-    <div id="korisnikPrikaz">
-    </div>
-   
-    <div id="adminPrikaz">
+    		<h2 id="imeKarte"></h2>
+			<p id="adminInterfejs"></p>
+    </section>
+    
 
-</div>
 
-<div id="korisnikIzmena">
 
-</div>
-
-<div id="adminIzmena">
-
-</div>
-<div id=divTabelaKarte>
-		<p>Karte korisnika</p>
-		<table border="1" id="karteTabela" style="background-color : dodgerblue; text-align: center; display: inline-block;">
-			<tr>
-				<th>Film</th>
-				<th>Datum prodaje</th>
-			</tr>
-			</table>
-</div>
- 
-<p id="adminInterfejs" style="text-align: center;"></p>
-</section>
-
-  </body>
+</body>
 </html>

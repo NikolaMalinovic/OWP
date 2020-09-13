@@ -3,11 +3,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Nalog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/Nalog.js"></script>
+	<script src="js/DodavanjeFilma.js"></script>
+    <title>Dodavanje filma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
   </head>
   <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -106,12 +108,28 @@ a.active,a:hover{
   }
 }
 section{
- 	font-size: 30px;
+  font-size: 30px;
   text-align: center; color:#0082e6;
   padding-top: 140px;
    font-family: 'Poppins', sans-serif;
+ 
 }
-div {display: block; text-align: center;}
+ 
+  
+body {
+    background-color: #d8d8d8;
+}
+
+
+
+
+
+
+
+
+
+
+
   </style>
   <body>
     <nav>
@@ -121,39 +139,36 @@ div {display: block; text-align: center;}
       </label>
       <label class="logo">MalinaCineplex</label>
       <ul>
+
 <li><a href="#" id="odjavaLink">Odjava</a></li>
-<li><a href="KorisnikFilmovi.html">Filmovi</a></li>
-
+<li><a href="#" id="profilLink">Profil</a></li>
 </ul>
+
 </nav>
-    <section>
-    <h2 id="imeNaloga"></h2>
-    <div id="korisnikPrikaz">
-    </div>
-   
-    <div id="adminPrikaz">
-
-</div>
-
-<div id="korisnikIzmena">
-
-</div>
-
-<div id="adminIzmena">
-
-</div>
-<div id=divTabelaKarte>
-		<p>Karte korisnika</p>
-		<table border="1" id="karteTabela" style="background-color : dodgerblue; text-align: center; display: inline-block;">
-			<tr>
-				<th>Film</th>
-				<th>Datum prodaje</th>
-			</tr>
-			</table>
-</div>
- 
-<p id="adminInterfejs" style="text-align: center;"></p>
-</section>
-
+	<section>
+		<h2>Dodavanje filma</h2>
+<div>
+	<form>
+		<table>
+			<tr><td>Naziv:</td><td><input type="text" name="naziv" id="nazivInput"/></td></tr>
+			<tr><td>Reziser:</td><td><input type="text" name="reziser" id="reziserInput"/>(Opciono)</td></tr>
+			<tr><td>Glumci:</td><td><input type="text" name="glumci" id="glumciInput"/>(Opciono)</td></tr>
+			<tr><td>Zanrovi:</td><td><input type="text" name="zanrovi" id="zanroviInput"/>(Opciono)</td></tr>
+			<tr><td>Trajanje:</td><td><input type="text" name="trajanje" id="trajanjeInput"/></td></tr>
+			<tr><td>Distributer:</td><td><input type="text" name="distributer" id="distributerInput"/></td></tr>
+			<tr><td>Zemlja porekla:</td><td><input type="text" name="zemljaPorekla" id="zemljaPoreklaInput"/></td></tr>
+			<tr><td>Godina proizvodnje:</td><td><input type="text" name="godinaProizvodnje" id="godinaProizvodnjeInput"/></td></tr>
+			<tr><td>Opis:</td><td><input type="text" name="opis" id="opisInput"/>(Opciono)</td></tr>
+			<tr><td/><td align="left"><input style="background-color: dodgerblue; color: white;" type="submit" value="Dodaj film" id="dodajFilmSubmit"></td></tr>
+		</table>
+	</form>
+	<p><a href="UpravljanjeKorisnicima.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Upravljanje korisnicima</a><br/>
+	<a href="Izvestavanje.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Izvestavanje</a></p>
+		</div>
+		
+	</section>    
   </body>
+ 
+	
+
 </html>

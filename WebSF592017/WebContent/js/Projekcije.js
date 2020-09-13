@@ -33,9 +33,10 @@
 			if (data.status == 'success') {
 				
 				var projekcije = data.projekcije;
-				var tipovi = data.tipovi;
+				var tipovi = data.tipoviProjekcije;
 				var sale = data.sale;
 				var filmovi = data.filmovi;
+				
 				
 				for (p in projekcije) {
 					projekcijeTabela.append(
