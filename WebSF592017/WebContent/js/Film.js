@@ -70,8 +70,7 @@ ispisProfil();
 						if(projekcije[p].film == idFilma){
 							if(Date.parse(projekcije[p].datumVreme) > new Date()){
 								$('#korisnikPrikaz').append(
-										'</br>' +
-										'<p><a style="text-decoration: none; font-weight: bold; color: dodgerblue;" href="KupovinaKarteFaza1.html?id='+ idFilma +'">Kupi kartu</a></p>'								);
+																);
 								break;
 							}
 						}
